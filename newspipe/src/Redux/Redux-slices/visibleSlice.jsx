@@ -1,17 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-import baseURL from '../../API/baseUrl'
 
 const initialState = {
-  news: [],
+  value: false,
 }
 
-export const newsSlice = createSlice({
-  name: 'news',
+export const visibleSlice = createSlice({
+  name: 'visibility',
   initialState,
   reducers: {
-    getNews: async (state) => {
-      
+    visible: (state) => {
+      state.value = true
     },
     invisible: (state) => {
       state.value = false
