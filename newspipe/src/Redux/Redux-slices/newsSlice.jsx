@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
-import baseURL from '../../API/baseUrl';
+
 
 
 export const getNews = createAsyncThunk(
@@ -19,21 +19,32 @@ export const getNews = createAsyncThunk(
   }
 
 );
+export const addNews = createAsyncThunk(
+  `news/addNews`,
+  async (state) => {
+    const params={
+      title:state.title,
+      body:state.body
+    }
+   try{
+    const res = await axios.post(`https://newspaper-1eeec-default-rtdb.europe-west1.firebasedatabase.app/news.json`,params)
+    
+    const result = Object.entries(res.data);
+    console.log(res,'res')
+    console.log(result,'result')
+    return result; 
+   }catch(e){
+    console.log(e)
+   }
+  }
 
-const initialState = {news:[]}
+);
+
+const initialState = {news:[],sendData:{title:'',body:''}}
 
 export const newsSlice = createSlice({
   name: 'news',
   initialState,
-  reducers: {
-    addNew: (state, action) => {
-      state.news.push({
-        id: action.payload.id,
-        title: action.payload.title,
-        body: action.payload.body,
-      })
-    },
-  },
   extraReducers: (builder) => {
     builder
       .addCase(getNews.fulfilled, (state, action) => {
@@ -41,5 +52,5 @@ export const newsSlice = createSlice({
       })
   }
 })
-export const { addNew} = newsSlice.actions
+
 export default newsSlice.reducer

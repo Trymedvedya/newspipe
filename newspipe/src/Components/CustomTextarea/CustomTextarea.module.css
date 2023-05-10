@@ -1,0 +1,13 @@
+.CT{
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    resize: none;
+    padding: 5px;
+    width: 90%;
+    height: 60%;
+}
+.CT::placeholder{
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}

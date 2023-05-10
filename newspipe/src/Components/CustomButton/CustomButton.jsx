@@ -1,8 +1,8 @@
 import React from 'react';
 import cls from './CustomButton.module.css'
-const CustomButton = ({children,...props}) => {
+const CustomButton = (props) => {
     return (
-        <button className={cls.MButton} {...props}>{children}</button>
+        <button className={cls.MButton} {...props}>{props.children}</button>
     );
 };
 

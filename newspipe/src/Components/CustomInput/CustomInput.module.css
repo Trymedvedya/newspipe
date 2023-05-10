@@ -1,8 +1,8 @@
 .Minput {
     width: 20vw;
     padding-left: 10px;
-    background: none;
-    color: #ffffff;
+    background: white;
+    color: black;
     border: 1px solid white;
     height: 50px;
     margin-bottom: 5px;
@@ -18,5 +18,7 @@
     -moz-appearance:textfield;
   }
 .Minput::placeholder{
-    color: white;
+    color: black;
+    font-weight: bold;
+    letter-spacing: 0.2px;
 }
