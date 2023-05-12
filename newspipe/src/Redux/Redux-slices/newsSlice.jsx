@@ -21,18 +21,12 @@ export const getNews = createAsyncThunk(
 );
 export const addNews = createAsyncThunk(
   `news/addNews`,
-  async (state) => {
-    const params={
-      title:state.title,
-      body:state.body
-    }
+  async (params) => {
    try{
     const res = await axios.post(`https://newspaper-1eeec-default-rtdb.europe-west1.firebasedatabase.app/news.json`,params)
-    
-    const result = Object.entries(res.data);
-    console.log(res,'res')
-    console.log(result,'result')
-    return result; 
+    console.log(res,'resыграфг')
+    const result = res.data;
+    return [result.name, params];
    }catch(e){
     console.log(e)
    }
@@ -40,7 +34,7 @@ export const addNews = createAsyncThunk(
 
 );
 
-const initialState = {news:[],sendData:{title:'',body:''}}
+const initialState = {news:[]}
 
 export const newsSlice = createSlice({
   name: 'news',
@@ -49,6 +43,9 @@ export const newsSlice = createSlice({
     builder
       .addCase(getNews.fulfilled, (state, action) => {
         state.news = action.payload || [];
+      })
+      .addCase(addNews.fulfilled, (state, action)=>{
+        state.news = [...state.news, action.payload] || [];
       })
   }
 })

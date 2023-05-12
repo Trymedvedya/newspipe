@@ -1,15 +1,16 @@
 .NewItemContainer{
     color: white;
-    border: 2px solid white;
+    border: 1px solid white;
     border-radius: 12px;
     display: flex;
     flex-direction: row;
     width: 70vw;
     padding: 10px;
-    box-shadow: 5px 5px white;
+    box-shadow: 5px 2px white;
     margin: 20px 0px;
-    
+
 }
+
 .title_n_doings{
     display: flex;
 }
@@ -19,6 +20,15 @@
     padding-bottom: 5px;
     border-bottom: 1px solid white;
     flex-wrap: wrap;
+    transition: ease-in-out 0.1s;
+    cursor: pointer;
+    user-select: none;
+}
+.title:hover{
+    opacity: 70%;
+}
+.title:active{
+    opacity: 100%;
 }
 .body{
     flex-wrap: wrap;

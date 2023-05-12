@@ -6,9 +6,8 @@ import './NewItemContainerAnim.css'
 import { CSSTransition} from 'react-transition-group';
 const NewItemContainer = (props) => {
     const [clicked, setClicked] = useState(false);
+   const dating = new Date(props.dateOfNew).toLocaleDateString();
     return (
-
-
         <div className={cls.NewItemContainer}>
  <img className={cls.news_img} src="https://mywebicons.ru/i/jpg/c1e7e76fdca082061c3ddc6ddcdb3809.jpg" alt="narcos" />
             <div className={cls.info}>
@@ -26,7 +25,7 @@ const NewItemContainer = (props) => {
                 </div>
                 <div className={cls.body_group}>
                 <p className={cls.body}>{props.body.length>130? `${props.body.slice(0,129)}...`:props.body } </p>
-                <p className={cls.date_of_new}>{props.dateOfNew}</p>
+                <p className={cls.date_of_new}>{dating}</p>
                 </div>
             </div>
             
