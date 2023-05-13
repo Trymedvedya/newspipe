@@ -33,6 +33,31 @@ export const addNews = createAsyncThunk(
   }
 
 );
+export const removeNews = createAsyncThunk(
+  `news/removeNews`,
+  async (id) => {
+   try{
+    const res = await axios.delete(`https://newspaper-1eeec-default-rtdb.europe-west1.firebasedatabase.app/news/${id}.json`)
+    console.log(res)
+    return id;
+   }catch(e){
+    console.log(e)
+   }
+  }
+
+);
+export const editNews = createAsyncThunk(
+  `news/editNews`,
+  async (params) => {
+   try{
+    const res = await axios.patch(`https://newspaper-1eeec-default-rtdb.europe-west1.firebasedatabase.app/news/${params.id}.json`)
+    return Object.entries(res.data);
+   }catch(e){
+    console.log(e)
+   }
+  }
+
+);
 
 const initialState = {news:[]}
 
@@ -46,6 +71,12 @@ export const newsSlice = createSlice({
       })
       .addCase(addNews.fulfilled, (state, action)=>{
         state.news = [...state.news, action.payload] || [];
+      })
+      .addCase(removeNews.fulfilled, (state, action)=>{
+       state.news =  state.news.filter(el=> el[0]!=action.payload) || [];
+      })
+      .addCase(editNews.fulfilled,(state,action)=>{
+        
       })
   }
 })

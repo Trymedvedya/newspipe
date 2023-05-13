@@ -3,7 +3,7 @@ import React, { useEffect, useState} from 'react';
 import cls from './NewsContainer.module.css'
 import NewItemContainer from '../NewIItemContainer/NewItemContainer';
 import { useDispatch, useSelector } from 'react-redux';
-import {addNews, getNews} from '../../Redux/Redux-slices/newsSlice';
+import {addNews, editNews, getNews} from '../../Redux/Redux-slices/newsSlice';
 import CustomButton from '../../Components/CustomButton/CustomButton'
 import {invisible, visible} from '../../Redux/Redux-slices/visibleSlice'
 import ModalWindow from '../../Components/ModalWindow/ModalWindow'
@@ -17,9 +17,12 @@ const [formData, setFormData] = useState({
     title:'',
     body:''
 })
+const [status, setStatus]=useState({status:'add'})
+console.log(status)
+const editNews = () =>{
 
+}
 useEffect(()=>{dispatch(getNews())},[dispatch])
-console.log(news1,'asd')
 const inputHandler = (e) =>{
     setFormData(prevState=>{return{...prevState,[e.target.name]:e.target.value}});
 }
@@ -29,17 +32,34 @@ const handleSubmit = (e) =>{
     dispatch(invisible())
     setFormData({title:'',body:''})
 }
+const openAddForm = () =>{
+    setStatus({status:'add'})
+    dispatch(visible());
+}
+const openEditForm = ()=>{
+    setStatus({status:'edit'})
+    dispatch(visible());
+    
+}
     return (
         <div className={cls.NewsContainer}>
-            <form onSubmit={handleSubmit}>
+            {status.status==='add'?<form onSubmit={handleSubmit}>
                 <ModalWindow>
                 <CustomInput onChange={inputHandler} value={formData.title} name='title' style={{width:'90%'}} placeholder='Заголовок'></CustomInput>
                 <CustomTextarea onChange={inputHandler} value={formData.body} name='body' placeholder='Текст новости'></CustomTextarea>
                 <CustomButton type='submit'>Отправить новость</CustomButton>
                 </ModalWindow>
-            </form>
-            {news1.news.map(el=><NewItemContainer title={el[1].title} body={el[1].body} dateOfNew={el[1].dateOfNew} key={el[0]} id={el[0]}/>)}
-            {vis==false?<CustomButton onClick={()=>dispatch(visible())}>Добавить новость</CustomButton>:null}
+            </form>:
+            <form onSubmit={handleSubmit}>
+                <ModalWindow>
+                    <h1>Редактировать</h1>
+                <CustomInput onChange={inputHandler} value={formData.title} name='title' style={{width:'90%'}} placeholder='Заголовок'></CustomInput>
+                <CustomTextarea onChange={inputHandler} value={formData.body} name='body' placeholder='Текст новости'></CustomTextarea>
+                <CustomButton type='submit'>Отправить правки</CustomButton>
+                </ModalWindow>
+            </form>}
+            {news1.news.map(el=><NewItemContainer openEditForm={openEditForm} title={el[1].title} body={el[1].body} dateOfNew={el[1].dateOfNew} key={el[0]} id={el[0]}/>)}
+            {vis==false?<CustomButton onClick={openAddForm}>Добавить новость</CustomButton>:null}
 
         </div>
     );
