@@ -3,3 +3,67 @@
     flex-direction: column;
     align-items: center;
 }
+/* .nail{
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    text-align: center;
+    border-radius: 100%;
+}
+.no_news_sign{
+    justify-content: space-between;
+    top: 13%;
+    left: 61%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    border-radius: 12px;
+   width: 190px;
+   padding: 5px 5px;
+    font-size: 12pt;
+    background-color: white;
+    margin: 10px;
+    text-align: center;
+    transform: rotate(18deg);
+    font-weight: bold;
+}
+.no_news_container{
+    margin: 20px;
+} */
+.no_news{
+    color:white;
+    position: relative;
+    background: black;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 39pt;
+    border-radius: 12px;
+    padding: 20px 50px;
+    margin: 10px;
+}
+.no_news::after{
+    content: '';
+    position: absolute;
+    filter: blur(13px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: screen;
+    background-image: repeating-linear-gradient(-170deg, transparent, transparent 1em, #decfcf 1em, #6e4d4d 50%), repeating-linear-gradient(45deg, #000000 1em, #000000 1em, #8d7e7e 50%);
+    background-size: 3em 3em, 2em 2em;
+    animation-name: ani;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes ani {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+        
+    }
+}

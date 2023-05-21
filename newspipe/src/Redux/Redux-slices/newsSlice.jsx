@@ -49,9 +49,12 @@ export const removeNews = createAsyncThunk(
 export const editNews = createAsyncThunk(
   `news/editNews`,
   async (params) => {
+    console.log(params,'sadsa')
    try{
-    const res = await axios.patch(`https://newspaper-1eeec-default-rtdb.europe-west1.firebasedatabase.app/news/${params.id}.json`)
-    return Object.entries(res.data);
+        
+    const res = await axios.patch(`https://newspaper-1eeec-default-rtdb.europe-west1.firebasedatabase.app/news/${params.id}.json`,params)
+    console.log(res)
+    return res;
    }catch(e){
     console.log(e)
    }
@@ -64,6 +67,7 @@ const initialState = {news:[]}
 export const newsSlice = createSlice({
   name: 'news',
   initialState,
+ 
   extraReducers: (builder) => {
     builder
       .addCase(getNews.fulfilled, (state, action) => {
@@ -76,9 +80,8 @@ export const newsSlice = createSlice({
        state.news =  state.news.filter(el=> el[0]!=action.payload) || [];
       })
       .addCase(editNews.fulfilled,(state,action)=>{
-        
+        console.log(action.payload,'waba')
       })
   }
 })
-
-export default newsSlice.reducer
+export default newsSlice.reducer;

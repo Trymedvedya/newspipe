@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import NewsContainer from './Containers/NewsContainer/newsContainer'
+import NewsRouter from './Routes/NewsRouter'
 
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div>
-      <NewsContainer/>
+      <NewsRouter/>
     </div>
   )
 }

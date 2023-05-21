@@ -23,6 +23,11 @@
     transition: ease-in-out 0.1s;
     cursor: pointer;
     user-select: none;
+    width: 95%;
+}
+.NavLink{
+    text-decoration: none;
+    color: white;
 }
 .title:hover{
     opacity: 70%;
@@ -37,6 +42,7 @@
     color: gray;
     font-size: 12px;
 }
+
 .news_img{
     min-width: 100px;
     padding-right: 10px;

@@ -22,7 +22,7 @@ console.log(status)
 const editNews = () =>{
 
 }
-useEffect(()=>{dispatch(getNews())},[dispatch])
+useEffect(()=>{dispatch(getNews()); sessionStorage.clear()},[dispatch])
 const inputHandler = (e) =>{
     setFormData(prevState=>{return{...prevState,[e.target.name]:e.target.value}});
 }
@@ -37,34 +37,25 @@ const openAddForm = () =>{
     dispatch(visible());
 }
 const openEditForm = ()=>{
-    setStatus({status:'edit'})
-    dispatch(visible());
+
     
 }
     return (
         <div className={cls.NewsContainer}>
-            {status.status==='add'?<form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <ModalWindow>
                 <CustomInput onChange={inputHandler} value={formData.title} name='title' style={{width:'90%'}} placeholder='Заголовок'></CustomInput>
                 <CustomTextarea onChange={inputHandler} value={formData.body} name='body' placeholder='Текст новости'></CustomTextarea>
                 <CustomButton type='submit'>Отправить новость</CustomButton>
                 </ModalWindow>
-            </form>:
-            <form onSubmit={handleSubmit}>
-                <ModalWindow>
-                    <h1>Редактировать</h1>
-                <CustomInput onChange={inputHandler} value={formData.title} name='title' style={{width:'90%'}} placeholder='Заголовок'></CustomInput>
-                <CustomTextarea onChange={inputHandler} value={formData.body} name='body' placeholder='Текст новости'></CustomTextarea>
-                <CustomButton type='submit'>Отправить правки</CustomButton>
-                </ModalWindow>
-            </form>}
-            {news1.news.map(el=><NewItemContainer openEditForm={openEditForm} title={el[1].title} body={el[1].body} dateOfNew={el[1].dateOfNew} key={el[0]} id={el[0]}/>)}
+            </form>
+            {news1.news.length==0?<span className={cls.no_news}>Новостей нет</span>: news1.news.map(el=><NewItemContainer openEditForm={openEditForm} title={el[1].title} body={el[1].body} dateOfNew={el[1].dateOfNew} key={el[0]} id={el[0]}/>)}
             {vis==false?<CustomButton onClick={openAddForm}>Добавить новость</CustomButton>:null}
 
         </div>
     );
 };
-
+{/* <span className={cls.no_news_sign}><div className={cls.nail}></div> Приходите завтра</span></div> */}
 
 
 export default NewsContainer;

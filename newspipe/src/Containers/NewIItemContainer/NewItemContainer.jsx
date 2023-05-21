@@ -5,24 +5,34 @@ import cls from './NewItemContainer.module.css'
 import './NewItemContainerAnim.css'
 import { CSSTransition} from 'react-transition-group';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeNews } from '../../Redux/Redux-slices/newsSlice';
+import { removeNews} from '../../Redux/Redux-slices/newsSlice';
+import { NavLink } from 'react-router-dom';
+import { addID, clearID } from '../../Redux/Redux-slices/tempIdSlice';
 const NewItemContainer = (props) => {
     const [clicked, setClicked] = useState(false);
    const dating = new Date(props.dateOfNew).toLocaleDateString();
    const news = useSelector(state=>state.news);
+
    const dispatch = useDispatch();
+    const throwData = () =>{
+        dispatch(clearID())
+        sessionStorage.setItem('tempIdTitle',props.title);
+        sessionStorage.setItem('tempIdBody',props.body);
+        sessionStorage.setItem('tempIdDateOfNew',dating)
+        sessionStorage.setItem('tempId',props.id)
+        dispatch(addID({title:sessionStorage.getItem('tempIdTitle'),body:sessionStorage.getItem('tempIdBody'),tempId:sessionStorage.getItem('tempId'), dateOfNew:sessionStorage.getItem('tempIdDateOfNew')}))
+    }
     return (
         <div className={cls.NewItemContainer}>
  <img className={cls.news_img} src="https://mywebicons.ru/i/jpg/c1e7e76fdca082061c3ddc6ddcdb3809.jpg" alt="narcos" />
             <div className={cls.info}>
                 <div className={cls.title_n_doings}>
-                    <p className={cls.title}>{props.title}</p>
+                    <p onClick={()=>throwData()} className={cls.title}><NavLink className={cls.NavLink} to={'/'+props.id}>{props.title}</NavLink></p>
+                  
                     <span onClick={() => setClicked(!clicked)} className={cls.doings}>...</span>
                     <CSSTransition in={clicked} classNames='doings_list' timeout={300} mountOnEnter unmountOnExit>
                         <div className='doings_list'>
                             <span onClick={()=>dispatch(removeNews(props.id))} className={cls.doings_choose}>Удалить</span>
-                            <span onClick={props.openEditForm} className={cls.doings_choose}>Редактировать</span>
-                            
                         </div>
                     </CSSTransition>
                     
