@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import cls from './NewFullVersion.module.css'
-import CustomTextarea from '../../Components/CustomTextarea/CustomTextarea';
 import CustomButton from '../../Components/CustomButton/CustomButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { editNews } from '../../Redux/Redux-slices/newsSlice';
 import { addID } from '../../Redux/Redux-slices/tempIdSlice';
+import { NavLink } from 'react-router-dom';
 const NewFullVersion = (props) => {
     const news = useSelector(state => state.news);
     const dispatch = useDispatch();
@@ -13,7 +13,6 @@ const NewFullVersion = (props) => {
         titleInput: '',
         body: false,
         bodyInput: '',
-        both:false
     })
     const handleChange = (e) => {
         setEdit(prevState => { return { ...prevState, [e.target.name]: e.target.value } })
@@ -51,6 +50,7 @@ const NewFullVersion = (props) => {
                 }
                 <pre className={cls.date_of_new}>{props.dateOfNew}</pre>
             </div>
+            <NavLink to='/'><CustomButton>На главную</CustomButton></NavLink>
         </div>
     );
 };

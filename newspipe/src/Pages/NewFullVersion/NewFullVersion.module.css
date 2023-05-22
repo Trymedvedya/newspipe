@@ -1,4 +1,4 @@
-.NewFullVersion{
+.NewFullVersion {
     color: white;
     display: flex;
     align-self: center;
@@ -7,39 +7,46 @@
     margin: 10px;
     width: 90%;
 }
-.title{
+
+.title {
     align-self: center;
     text-align: center;
     padding: 20px;
     border: 2px solid white;
     border-radius: 12px;
 }
-.body{
-   margin-top: 10px;
-    text-indent: 2%;
+
+.body {
+    margin-top: 10px;
+    text-indent: 3%;
+    white-space: pre-line;
 }
-.date_of_new{
+
+.date_of_new {
     font-size: 10pt;
     opacity: 50%;
     align-self: flex-start;
     width: 90%;
 }
-.NewFullVersion_Cont{
+
+.NewFullVersion_Cont {
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-.edit_title{
+
+.edit_title {
     display: flex;
     flex-direction: column;
 }
-.title_edit{
+
+.title_edit {
     font-size: 22pt;
     text-align: center;
-    color:white;
+    color: white;
     align-self: center;
-    background:none;
+    background: none;
     width: 99%;
     padding: 10px 0px;
     font-weight: bold;
@@ -49,12 +56,13 @@
     resize: none;
     height: 30%;
 }
-.body_edit{
+
+.body_edit {
     font-size: 12pt;
     margin-top: 20px;
-    color:white;
+    color: white;
     align-self: center;
-    background:none;
+    background: none;
     width: 100%;
     padding: 10px 10px;
     font-weight: bold;
