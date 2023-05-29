@@ -26,7 +26,6 @@ const NewsContainer = () => {
     
     return (
         <div className={cls.NewsContainer}>
-
             {news.news.length == 0 ? <span className={cls.no_news}>Новостей нет</span> : news.news.map(el =>
                 <NewItemContainer
                     title={el[1].title}

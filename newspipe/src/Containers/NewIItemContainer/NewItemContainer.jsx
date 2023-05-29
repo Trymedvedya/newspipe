@@ -24,7 +24,7 @@ const NewItemContainer = (props) => {
     }
     return (
         <div className={cls.NewItemContainer}>
- <img className={cls.news_img} src="https://mywebicons.ru/i/jpg/c1e7e76fdca082061c3ddc6ddcdb3809.jpg" alt="narcos" />
+ <img className={cls.news_img} src="https://icdn.lenta.ru/images/2021/11/23/16/20211123162551123/square_1280_13becfb302182f48dd5ce21746297e5f.jpg" alt="narcos" />
             <div className={cls.info}>
                 <div className={cls.title_n_doings}>
                     <p onClick={()=>throwData()} className={cls.title}><NavLink className={cls.NavLink} to={'/'+props.id}>{props.title}</NavLink></p>
